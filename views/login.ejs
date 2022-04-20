@@ -8,6 +8,9 @@
   </head>
   <body>
     <h1>Login</h1>
+    <% if(messages.error){ %>
+    <!-- prettier -->
+    <%= messages.error %> <% } %>
     <form action="/login">
       <div class="form-control">
         <label for="email">Email</label>

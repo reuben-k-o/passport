@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const { Router } = require("express");
+const passport = require("passport");
 
 const router = Router();
 
@@ -22,14 +23,24 @@ router.post("/signup", async (req, res, next) => {
       password: hashedPass,
     });
     console.log(users);
+    res.redirect("/login");
   } catch (err) {
     console.log(err);
+    res.redirect("/signup");
   }
 });
 
 router.get("/login", (req, res, next) => {
   res.status(200).render("login");
 });
-router.post("/login", (req, res, next) => {});
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true,
+  })
+);
 
 module.exports = router;
+exports = users;
