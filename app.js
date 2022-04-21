@@ -11,11 +11,14 @@ const session = require("express-session");
 const authRoutes = require("./routes/auth");
 const { users } = require("./routes/auth");
 const initializedPassport = require("./passport-config");
-initializedPassport(passport, (email) =>
-  users.find((user) => {
-    console.log(user);
-    return user.email === email;
-  })
+initializedPassport(
+  passport,
+  (email) =>
+    users.find((user) => {
+      console.log("Testing users", user);
+      return user.email === email;
+    }),
+  (id) => users.find((user) => user.id === id)
 );
 
 const app = express();
@@ -34,7 +37,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+// console.log(users);
 app.use(authRoutes);
 
 app.listen(4000);

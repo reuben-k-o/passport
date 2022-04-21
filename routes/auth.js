@@ -7,7 +7,7 @@ const router = Router();
 const users = [];
 
 router.get("/", (req, res, next) => {
-  res.status(200).render("index", { name: "Reuben" });
+  res.status(200).render("index", { name: req.body.name });
 });
 
 router.get("/signup", (req, res, next) => {
@@ -43,4 +43,5 @@ router.post(
 );
 
 module.exports = router;
-exports = users;
+module.exports.users = users;
+// exports = users;
