@@ -44,6 +44,11 @@ router.post(
   })
 );
 
+router.delete("/logout", (req, res, next) => {
+  req.logOut();
+  res.redirect("/login");
+});
+
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();

@@ -9,5 +9,8 @@
   <body>
     <h1>Welcome Home</h1>
     <h3>Hi <%=name %> !</h3>
+    <form action="/logout?_method=DELETE" method="POST">
+      <button type="submit">Log Out</button>
+    </form>
   </body>
 </html>
